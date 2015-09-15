@@ -82,6 +82,21 @@ $(document).ready(function() {
         $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
 
         $(".contact").last().click(function() {
+            // Copy to clipboard on click--
+            // Create a temporary input box and add it to the end of the page
+            var tempInputBox = $("<input>");
+            $("body").append(tempInputBox);
+
+            // Insert the full name of this contact into the new box and select it
+            tempInputBox.val(newContact.fullName()).select();
+
+            // Run the copy command and remove the temporary input box
+            document.execCommand("copy");
+            tempInputBox.remove();
+        });
+
+        $(".contact").last().hover(function() {
+            // Hover on
             $("#show-contact").show();
             $("#show-contact h2").text(newContact.firstName);
             $(".first-name").text(newContact.firstName);
@@ -92,6 +107,9 @@ $(document).ready(function() {
                 $("ul#address").append("<li>" + address.street + ", " + address.city + ", " +
                     address.state + " (" + address.type + ")" + "</li>");
             });
+        }, function() {
+            // Hover off
+            // $("#show-contact").hide();
         });
 
         resetFields();

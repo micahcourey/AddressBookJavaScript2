@@ -26,28 +26,34 @@ function resetFields() {
     $("input.new-city").val("");
     $("input.new-state").val("");
     $("input.new-type").val("");
+
+    $(".new-address").not(":first").hide();
+};
+
+function newAddress() {
+    $("#new-addresses").append('<div class="new-address">' +
+                                '<div class="form-group">' +
+                                    '<label for="new-street">Street</label>' +
+                                    '<input type="text" class="form-control new-street">' +
+                                '</div>' +
+                                '<div class="form-group">' +
+                                    '<label for="new-city">City</label>' +
+                                    '<input type="text" class="form-control new-city">' +
+                                '</div>' +
+                                '<div class="form-group">' +
+                                    '<label for="new-state">State</label>' +
+                                    '<input type="text" class="form-control new-state">' +
+                                '</div>' +
+                                '<div class="form-group">' +
+                                    '<label for="new-type">Address Type</label>' +
+                                    '<input type="text" class="form-control new-type">' +
+                                '</div>' +
+                            '</div>');
 };
 
 $(document).ready(function() {
     $("#add-address").click(function() {
-        $("#new-addresses").append('<div class="new-address">' +
-                                    '<div class="form-group">' +
-                                        '<label for="new-street">Street</label>' +
-                                        '<input type="text" class="form-control new-street">' +
-                                    '</div>' +
-                                    '<div class="form-group">' +
-                                        '<label for="new-city">City</label>' +
-                                        '<input type="text" class="form-control new-city">' +
-                                    '</div>' +
-                                    '<div class="form-group">' +
-                                        '<label for="new-state">State</label>' +
-                                        '<input type="text" class="form-control new-state">' +
-                                    '</div>' +
-                                    '<div class="form-group">' +
-                                        '<label for="new-type">Address Type</label>' +
-                                        '<input type="text" class="form-control new-type">' +
-                                    '</div>' +
-                                '</div>');
+        newAddress();
     });
 
 

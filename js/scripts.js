@@ -6,7 +6,25 @@ function Contact(firstName, lastName){
 
 Contact.prototype.fullName = function() {
     return this.firstName + " " + this.lastName;
-}
+};
+
+function Address(street, city, state) {
+    this.street = street;
+    this.city = city;
+    this.state = state;
+};
+
+Address.prototype.fullAddress = function() {
+    return this.street + ", " + this.city + ", " + this.state;
+};
+
+function resetFields() {
+    $("input#new-first-name").val("");
+    $("input#new-last-name").val("");
+    $("input.new-street").val("");
+    $("input.new-city").val("");
+    $("input.new-state").val("");
+};
 
 $(document).ready(function() {
     $("#add-address").click(function() {
@@ -57,11 +75,7 @@ $(document).ready(function() {
                 $("ul#address").append("<li>" + address.street + ", " + address.city + ", " + address.state + "</li>");
             });
         });
+        resetFields();
 
-        $("input#new-first-name").val("");
-        $("input#new-last-name").val("");
-        $("input.new-street").val("");
-        $("input.new-city").val("");
-        $("input.new-state").val("");
     });
 });

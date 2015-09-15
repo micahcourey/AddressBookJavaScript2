@@ -65,54 +65,63 @@ $(document).ready(function() {
         var inputtedFirstName = $("input#new-first-name").val();
         var inputtedLastName = $("input#new-last-name").val();
 
-        var newContact = new Contact(inputtedFirstName, inputtedLastName);
+        // If user did not input a first or last name, animate the button
+        // and don't submit the form.
+        // Else submit the form.
+        if (inputtedFirstName === "" || inputtedLastName === "") {
+            console.log("no first or last name");
+            $("#submit-btn").toggleClass("shakeyrbutt");
+        } else {
+            var newContact = new Contact(inputtedFirstName, inputtedLastName);
 
-        $(".new-address").each(function() {
-            var inputtedStreet = $(this).find("input.new-street").val();
-            var inputtedCity = $(this).find("input.new-city").val();
-            var inputtedState = $(this).find("input.new-state").val();
-            var inputtedType = $(this).find("input.new-type").val();
+            $(".new-address").each(function() {
+                var inputtedStreet = $(this).find("input.new-street").val();
+                var inputtedCity = $(this).find("input.new-city").val();
+                var inputtedState = $(this).find("input.new-state").val();
+                var inputtedType = $(this).find("input.new-type").val();
 
-            var newAddress = { street: inputtedStreet, city: inputtedCity, state: inputtedState, type: inputtedType};
-            newContact.addresses.push(newAddress);
-
-            console.log("new address type" + newAddress.type);
-        });
-
-        $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
-
-        $(".contact").last().click(function() {
-            // Copy to clipboard on click--
-            // Create a temporary input box and add it to the end of the page
-            var tempInputBox = $("<input>");
-            $("body").append(tempInputBox);
-
-            // Insert the full name of this contact into the new box and select it
-            tempInputBox.val(newContact.fullName()).select();
-
-            // Run the copy command and remove the temporary input box
-            document.execCommand("copy");
-            tempInputBox.remove();
-        });
-
-        $(".contact").last().hover(function() {
-            // Hover on
-            $("#show-contact").show();
-            $("#show-contact h2").text(newContact.firstName);
-            $(".first-name").text(newContact.firstName);
-            $(".last-name").text(newContact.lastName);
-
-            $("ul#address").text("");
-            newContact.addresses.forEach(function(address) {
-                $("ul#address").append("<li>" + address.street + ", " + address.city + ", " +
-                    address.state + " (" + address.type + ")" + "</li>");
+                var newAddress = { street: inputtedStreet, city: inputtedCity, state: inputtedState, type: inputtedType};
+                newContact.addresses.push(newAddress);
             });
-        }, function() {
-            // Hover off
-            // $("#show-contact").hide();
-        });
 
-        resetFields();
+            $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
+
+            $(".contact").last().click(function() {
+                // Copy to clipboard on click--
+                // Create a temporary input box and add it to the end of the page
+                var tempInputBox = $("<input>");
+                $("body").append(tempInputBox);
+
+                // Insert the full name of this contact into the new box and select it
+                tempInputBox.val(newContact.fullName()).select();
+
+                // Run the copy command and remove the temporary input box
+                document.execCommand("copy");
+                tempInputBox.remove();
+            });
+
+            $(".contact").last().hover(function() {
+                // Hover on
+                $("#show-contact").show();
+                $("#show-contact h2").text(newContact.firstName);
+                $(".first-name").text(newContact.firstName);
+                $(".last-name").text(newContact.lastName);
+
+                $("ul#address").text("");
+                newContact.addresses.forEach(function(address) {
+                    $("ul#address").append("<li>" + address.street + ", " + address.city + ", " +
+                        address.state + " (" + address.type + ")" + "</li>");
+                });
+            }, function() {
+                // Hover off
+                // $("#show-contact").hide();
+            });
+
+            resetFields();
+
+        }
+
+
 
     });
 });

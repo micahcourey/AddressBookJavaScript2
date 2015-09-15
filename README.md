@@ -1,7 +1,7 @@
 Address Book
 ==========
 
-By Ashlin Aronin && Alex Costa, 14-Sep-2015
+By Ashlin Aronin && Micah Courey, 15-Sep-2015
 
 Keep track of contacts using jQuery.
 
@@ -20,4 +20,4 @@ JavaScript, jQuery, HTML, Bootstrap, CSS
 
 License
 ----------
-MIT License, Copyright (c) 2015 Ashlin Aronin && Alex Costa
+MIT License, Copyright (c) 2015 Ashlin Aronin && Micah Courey

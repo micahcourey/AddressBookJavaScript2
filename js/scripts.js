@@ -27,7 +27,8 @@ function resetFields() {
     $("input.new-state").val("");
     $("input.new-type").val("");
 
-    $(".new-address").not(":first").hide();
+    // Hide all but the first new address form on reset
+    $(".new-address").not(":first").fadeOut("slow");
 };
 
 function newAddress() {
@@ -48,12 +49,13 @@ function newAddress() {
                                     '<label for="new-type">Address Type</label>' +
                                     '<input type="text" class="form-control new-type">' +
                                 '</div>' +
-                            '</div>');
+                            '</div>').hide().fadeIn("slow");
 };
 
 $(document).ready(function() {
     $("#add-address").click(function() {
         newAddress();
+        // $(".new-address").hide().fadeIn("slow");
     });
 
 

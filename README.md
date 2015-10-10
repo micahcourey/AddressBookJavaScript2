@@ -3,7 +3,7 @@ Address Book
 
 By Ashlin Aronin && Micah Courey, 15-Sep-2015
 
-Keep track of contacts using jQuery.
+Keep track of contacts using jQuery. Check it out at: http://micahcourey.github.io/AddressBookJavaScript2
 
 Setup
 ----------
